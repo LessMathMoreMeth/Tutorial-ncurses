@@ -159,6 +159,10 @@ public:
       {
         selected_menu = i;
       }
+      if (trigger == 10 && selected_menu == 3)
+      {
+        exit(-2);
+      }
     }
   }
 };
