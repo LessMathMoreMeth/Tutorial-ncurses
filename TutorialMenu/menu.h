@@ -16,7 +16,7 @@ public:
   int num_items;
   int selected_item;
 
-  Menu(string text, char trigger, string *items, int num_item)
+  Menu(string text, char trigger, string *items, int num_items)
   {
     this->text = text;
     this->trigger = trigger;
