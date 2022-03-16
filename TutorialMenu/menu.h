@@ -61,7 +61,7 @@ public:
   {
     for (int i = 0; i < num_menus; i++)
     {
-      if (trigger = this->menus[i].trigger)
+      if (trigger == this->menus[i].trigger)
       {
         selected_menu = i;
       }
