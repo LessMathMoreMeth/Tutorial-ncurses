@@ -28,12 +28,27 @@ int main(int argc, char **argv)
       wattron(win, A_STANDOUT);
       mvwprintw(win, 0, 2, "File");
       wattroff(win, A_STANDOUT);
+      mvwprintw(win, 0, 7, "Edit");
+      mvwprintw(win, 0, 12, "Options");
       break;
     case 'e':
+      wattron(win, A_STANDOUT);
+      mvwprintw(win, 0, 7, "Edit");
+      wattroff(win, A_STANDOUT);
+      mvwprintw(win, 0, 2, "File");
+      mvwprintw(win, 0, 12, "Options");
       break;
     case 'o':
+      wattron(win, A_STANDOUT);
+      mvwprintw(win, 0, 12, "Options");
+      wattroff(win, A_STANDOUT);
+      mvwprintw(win, 0, 2, "File");
+      mvwprintw(win, 0, 7, "Edit");
       break;
     default:
+      mvwprintw(win, 0, 2, "File");
+      mvwprintw(win, 0, 7, "Edit");
+      mvwprintw(win, 0, 12, "Options");
       break;
     }
   }
