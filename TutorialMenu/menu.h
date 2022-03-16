@@ -65,6 +65,10 @@ public:
       {
         selected_menu = i;
       }
+      else
+      {
+        selected_menu = -1;
+      }
     }
   }
 };
