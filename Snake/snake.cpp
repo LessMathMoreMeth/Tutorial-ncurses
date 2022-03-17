@@ -12,6 +12,10 @@ int main(int argc, char **argv)
   refresh();
 
   Board board(BOARD_ROWS, BOARD_COLS);
+  board.initialize();
+
+  board.addAt(5, 5, '#');
+  board.refresh();
 
   getch();
   endwin();
