@@ -1,7 +1,7 @@
 .DEFAULT_GOAL = build
 
 build:
-	g++ tutorialMenu.cpp -lncurses -o tutorialMenu
+	g++ tutorialMenu.cpp -lpdcurses -o tutorialMenu
 
 run:
 	tutorialMenu.exe

@@ -52,6 +52,10 @@ int main()
       mvwprintw(inputwin, 1, 1, "you pressed right!");
       wrefresh(inputwin);
     }
+    else if (c == 'q')
+    {
+      return -1;
+    }
   }
 
   // dealloca la memoria e termina curses
