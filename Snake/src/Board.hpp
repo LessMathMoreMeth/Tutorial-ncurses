@@ -24,7 +24,7 @@ public:
 
   void addAt(int y, int x, chtype ch)
   {
-    mvaddch(board_win, y, x, ch);
+    mvwaddch(board_win, y, x, ch);
   }
 
   chtype getInput()
