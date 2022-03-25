@@ -1,6 +1,7 @@
 #include <curses.h>
 #include "src/SnakeGame.hpp"
 #include "src/board.hpp"
+#include "src/Drawable.hpp"
 
 #define BOARD_DIM 20
 #define BOARD_ROWS BOARD_DIM

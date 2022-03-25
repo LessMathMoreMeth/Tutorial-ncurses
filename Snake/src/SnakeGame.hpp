@@ -2,6 +2,7 @@
 
 #include <curses.h>
 #include "Board.hpp"
+#include "Drawable.hpp"
 
 class SnakeGame
 {
@@ -21,7 +22,8 @@ public:
 
   void updateState()
   {
-    // update state
+    board.add(Drawable(3, 3, '#'));
+    board.add(Drawable(3, 5, '@'));
   }
 
   void redraw()
