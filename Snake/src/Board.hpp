@@ -3,12 +3,14 @@
 class Board
 {
 public:
+  Board()
+  {
+    construct(0, 0);
+  }
+
   Board(int height, int width)
   {
-    int yMax, xMax;
-    getmaxyx(stdscr, yMax, xMax);
-
-    board_win = newwin(height, width, (yMax / 2) - (height / 2), (xMax / 2) - (width / 2));
+    construct(height, width);
   }
 
   void initialize()
@@ -45,4 +47,12 @@ public:
 
 private:
   WINDOW *board_win;
+
+  void construct(int height, int width)
+  {
+    int xMax, yMax;
+    getmaxyx(stdscr, yMax, xMax);
+
+    board_win = newwin(height, width, (yMax / 2) - (height / 2), (xMax / 2) - (width / 2));
+  }
 };

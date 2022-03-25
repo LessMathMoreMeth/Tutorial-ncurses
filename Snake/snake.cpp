@@ -1,4 +1,5 @@
 #include <curses.h>
+#include "src/SnakeGame.hpp"
 #include "src/board.hpp"
 
 #define BOARD_DIM 20
@@ -10,12 +11,21 @@ int main(int argc, char **argv)
 
   initscr();
   refresh();
+  noecho();
 
-  Board board(BOARD_ROWS, BOARD_COLS);
-  board.initialize();
+  SnakeGame game(BOARD_ROWS, BOARD_COLS);
 
-  board.addAt(5, 5, '#');
-  board.refresh();
+  while (!game.isOver())
+  {
+    // 1: get input from user
+    game.processInput();
+
+    // 2: update game state
+    game.updateState();
+
+    // 3: redraw display
+    game.redraw();
+  }
 
   getch();
   endwin();
