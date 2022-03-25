@@ -17,7 +17,10 @@ public:
   void processInput()
   {
     chtype input = board.getInput();
-    // process the input
+    if (input == 'x')
+      game_over = true;
+    board.clear();
+    board.refresh();
   }
 
   void updateState()
