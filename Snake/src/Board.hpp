@@ -41,6 +41,12 @@ public:
     return wgetch(board_win);
   }
 
+  void getEmptyCoordinates(int &y, int &x)
+  {
+    while ((mvwinch(board_win, y = rand() % height, x = rand() % width)) != ' ')
+      ;
+  }
+
   void clear()
   {
     wclear(board_win);
@@ -54,11 +60,14 @@ public:
 
 private:
   WINDOW *board_win;
+  int height, width;
 
   void construct(int height, int width)
   {
     int xMax, yMax;
     getmaxyx(stdscr, yMax, xMax);
+    this->height = height;
+    this->width = width;
 
     board_win = newwin(height, width, (yMax / 2) - (height / 2), (xMax / 2) - (width / 2));
   }

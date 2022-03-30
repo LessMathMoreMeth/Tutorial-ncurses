@@ -1,8 +1,12 @@
 #pragma once
 
 #include <curses.h>
+#include <time.h>
+#include <stdlib.h>
 #include "Board.hpp"
 #include "Drawable.hpp"
+#include "Apple.hpp"
+#include "Empty.hpp"
 
 class SnakeGame
 {
@@ -12,6 +16,12 @@ public:
     board = Board(height, width);
     board.initialize();
     game_over = false;
+    srand(time(NULL));
+  }
+
+  ~SnakeGame()
+  {
+    delete apple;
   }
 
   void processInput()
@@ -25,7 +35,12 @@ public:
 
   void updateState()
   {
-    board.add(Drawable(3, 3, '#'));
+    int y, x;
+    board.getEmptyCoordinates(y, x);
+    if (apple != NULL)
+      board.add(Empty(apple->getY(), apple->getX()));
+    apple = new Apple(y, x);
+    board.add(*apple);
     board.add(Drawable(3, 5, '@'));
   }
 
@@ -42,4 +57,5 @@ public:
 private:
   Board board;
   bool game_over;
+  Apple *apple;
 };
