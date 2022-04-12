@@ -17,6 +17,39 @@ private:
   Apple *apple;
   Snake snake;
 
+  void createApple()
+  {
+    int y, x;
+    board.getEmptyCoordinates(y, x);
+    apple = new Apple(y, x);
+    board.add(*apple);
+  }
+
+  void handleNextPiece(SnakePiece next)
+  {
+    if (apple != NULL && (next.getX() != apple->getX() || next.getY() != apple->getY()))
+    {
+      int emptyRow = snake.tail().getY();
+      int emptyCol = snake.tail().getX();
+
+      board.add(Empty(emptyRow, emptyCol));
+      snake.removePiece();
+    }
+    else
+    {
+      destroyApple();
+    }
+
+    board.add(next);
+    snake.addPiece(next);
+  }
+
+  void destroyApple()
+  {
+    delete apple;
+    apple = NULL;
+  }
+
 public:
   SnakeGame(int height, int width)
   {
@@ -38,23 +71,18 @@ public:
 
     snake.setDirection(down);
 
-    SnakePiece next = SnakePiece(1, 1);
-    board.add(next);
-    snake.addPiece(next);
-
-    next = snake.nextHead();
-    board.add(next);
-    snake.addPiece(next);
-
-    next = snake.nextHead();
-    board.add(next);
-    snake.addPiece(next);
+    handleNextPiece(SnakePiece(1, 1));
+    handleNextPiece(snake.nextHead());
+    handleNextPiece(snake.nextHead());
 
     snake.setDirection(right);
 
-    next = snake.nextHead();
-    board.add(next);
-    snake.addPiece(next);
+    handleNextPiece(snake.nextHead());
+
+    if (apple == NULL)
+    {
+      createApple();
+    }
   }
 
   void processInput()
@@ -92,26 +120,12 @@ public:
 
   void updateState()
   {
+    handleNextPiece(snake.nextHead());
+
     if (apple == NULL)
     {
-      int y, x;
-      board.getEmptyCoordinates(y, x);
-      apple = new Apple(y, x);
-      board.add(*apple);
+      createApple();
     }
-
-    SnakePiece next = snake.nextHead();
-    if (next.getX() != apple->getX() && next.getY() != apple->getY())
-    {
-      int emptyRow = snake.tail().getY();
-      int emptyCol = snake.tail().getX();
-
-      board.add(Empty(emptyRow, emptyCol));
-      snake.removePiece();
-    }
-
-    board.add(next);
-    snake.addPiece(next);
   }
 
   void redraw()
