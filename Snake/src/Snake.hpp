@@ -35,7 +35,7 @@ public:
 class Snake
 {
 protected:
-  queue<SnakePiece> prev_places;
+  queue<SnakePiece> prev_pieces;
   Direction cur_direction;
 
 public:
@@ -46,21 +46,21 @@ public:
 
   void addPiece(SnakePiece piece)
   {
-    prev_places.push(piece);
+    prev_pieces.push(piece);
   }
 
   void removePiece()
   {
-    prev_places.pop();
+    prev_pieces.pop();
   }
 
   SnakePiece tail()
   {
-    return prev_places.back();
+    return prev_pieces.back();
   }
 
   SnakePiece head()
   {
-    return prev_places.front();
+    return prev_pieces.front();
   }
 };
