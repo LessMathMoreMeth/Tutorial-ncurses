@@ -1,6 +1,6 @@
 all: main
 
-main: main.cpp	src/Board.hpp src/SnakeGame.hpp
+main: main.cpp	src/*
 	g++ main.cpp -lpdcurses -o main 
 
 run:

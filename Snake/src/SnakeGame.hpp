@@ -60,6 +60,34 @@ public:
   void processInput()
   {
     chtype input = board.getInput();
+
+    switch (input)
+    {
+    case KEY_UP:
+    case 'w':
+      snake.setDirection(up);
+      break;
+    case KEY_DOWN:
+    case 's':
+      snake.setDirection(down);
+      break;
+    case KEY_RIGHT:
+    case 'd':
+      snake.setDirection(right);
+      break;
+    case KEY_LEFT:
+    case 'a':
+      snake.setDirection(left);
+      break;
+    case 'p':
+      board.setTimeout(-1);
+      while (board.getInput() != 'p')
+        ;
+      board.setTimeout(1000);
+      break;
+    default:
+      break;
+    }
   }
 
   void updateState()
