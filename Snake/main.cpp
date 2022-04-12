@@ -14,6 +14,7 @@ int main(int argc, char **argv)
   refresh();
   noecho();
   cbreak();
+  curs_set(0);
 
   SnakeGame game(BOARD_ROWS, BOARD_COLS);
 

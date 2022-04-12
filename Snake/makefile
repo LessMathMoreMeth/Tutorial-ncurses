@@ -1,8 +1,8 @@
 all: main
 
-main: snake.cpp	src/Board.hpp src/SnakeGame.hpp
-	g++ snake.cpp -lpdcurses -o snake 
+main: main.cpp	src/Board.hpp src/SnakeGame.hpp
+	g++ main.cpp -lpdcurses -o main 
 
 run:
-	snake.exe
+	main.exe
 

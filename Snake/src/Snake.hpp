@@ -56,11 +56,45 @@ public:
 
   SnakePiece tail()
   {
-    return prev_pieces.back();
+    return prev_pieces.front();
   }
 
   SnakePiece head()
   {
-    return prev_pieces.front();
+    return prev_pieces.back();
+  }
+
+  Direction getDirection()
+  {
+    return cur_direction;
+  }
+
+  void setDirection(Direction d)
+  {
+    cur_direction = d;
+  }
+
+  SnakePiece nextHead()
+  {
+    int row = head().getY();
+    int col = head().getX();
+
+    switch (cur_direction)
+    {
+    case down:
+      row++;
+      break;
+    case up:
+      row--;
+      break;
+    case right:
+      col++;
+      break;
+    case left:
+      col--;
+      break;
+    }
+
+    return SnakePiece(row, col);
   }
 };
