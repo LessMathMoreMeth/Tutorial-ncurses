@@ -27,17 +27,26 @@ private:
 
   void handleNextPiece(SnakePiece next)
   {
-    if (apple != NULL && (next.getX() != apple->getX() || next.getY() != apple->getY()))
+    if (apple != NULL)
     {
-      int emptyRow = snake.tail().getY();
-      int emptyCol = snake.tail().getX();
+      switch (board.getCharAt(next.getY(), next.getX()))
+      {
+      case 'A':
+        destroyApple();
+        break;
+      case ' ':
+      {
+        int emptyRow = snake.tail().getY();
+        int emptyCol = snake.tail().getX();
 
-      board.add(Empty(emptyRow, emptyCol));
-      snake.removePiece();
-    }
-    else
-    {
-      destroyApple();
+        board.add(Empty(emptyRow, emptyCol));
+        snake.removePiece();
+        break;
+      }
+      default:
+        game_over = true;
+        break;
+      }
     }
 
     board.add(next);
@@ -69,13 +78,13 @@ public:
     game_over = false;
     srand(time(NULL));
 
-    snake.setDirection(down);
+    snake.setDirection(direction_down);
 
     handleNextPiece(SnakePiece(1, 1));
     handleNextPiece(snake.nextHead());
     handleNextPiece(snake.nextHead());
 
-    snake.setDirection(right);
+    snake.setDirection(direction_right);
 
     handleNextPiece(snake.nextHead());
 
@@ -93,25 +102,30 @@ public:
     {
     case KEY_UP:
     case 'w':
-      snake.setDirection(up);
+      snake.setDirection(direction_up);
       break;
     case KEY_DOWN:
     case 's':
-      snake.setDirection(down);
+      snake.setDirection(direction_down);
       break;
     case KEY_RIGHT:
     case 'd':
-      snake.setDirection(right);
+      snake.setDirection(direction_right);
       break;
     case KEY_LEFT:
     case 'a':
-      snake.setDirection(left);
+      snake.setDirection(direction_left);
       break;
     case 'p':
       board.setTimeout(-1);
       while (board.getInput() != 'p')
         ;
       board.setTimeout(1000);
+      break;
+    case 'x':
+      game_over = true;
+      board.clear();
+      board.refresh();
       break;
     default:
       break;

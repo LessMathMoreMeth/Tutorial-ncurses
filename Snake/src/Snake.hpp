@@ -8,10 +8,10 @@ using namespace std;
 
 enum Direction
 {
-  up = -1,
-  down = 1,
-  left = -2,
-  right = 2
+  direction_up = -1,
+  direction_down = 1,
+  direction_left = -2,
+  direction_right = 2
 };
 
 class SnakePiece : public Drawable
@@ -41,7 +41,7 @@ protected:
 public:
   Snake()
   {
-    cur_direction = down;
+    cur_direction = direction_down;
   }
 
   void addPiece(SnakePiece piece)
@@ -84,16 +84,16 @@ public:
 
     switch (cur_direction)
     {
-    case down:
+    case direction_down:
       row++;
       break;
-    case up:
+    case direction_up:
       row--;
       break;
-    case right:
+    case direction_right:
       col++;
       break;
-    case left:
+    case direction_left:
       col--;
       break;
     }

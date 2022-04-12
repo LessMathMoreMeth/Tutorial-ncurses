@@ -1,7 +1,10 @@
 #include <curses.h>
+#include <iostream>
 #include "src/SnakeGame.hpp"
 #include "src/board.hpp"
 #include "src/Drawable.hpp"
+
+using namespace std;
 
 #define BOARD_DIM 20
 #define BOARD_ROWS BOARD_DIM
@@ -32,6 +35,8 @@ int main(int argc, char **argv)
 
   getch();
   endwin();
+
+  cout << "Gameover" << endl;
 
   return 0;
 }

@@ -47,6 +47,11 @@ public:
       ;
   }
 
+  chtype getCharAt(int y, int x)
+  {
+    return mvwinch(board_win, y, x);
+  }
+
   void clear()
   {
     wclear(board_win);
@@ -57,6 +62,7 @@ public:
   {
     wrefresh(board_win);
   }
+
   void setTimeout(int timeout)
   {
     wtimeout(board_win, timeout);
